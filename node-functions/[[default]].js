@@ -1,9 +1,8 @@
 import Koa from 'koa';
-import Router from '@koa/router';
+import { router } from './router';
 
 // Create Koa application
 const app = new Koa();
-const router = new Router();
 
 // Add some middleware
 app.use(async (ctx, next) => {
@@ -11,11 +10,6 @@ app.use(async (ctx, next) => {
   await next();
   const ms = Date.now() - start;
   ctx.set('X-Response-Time', `${ms}ms`);
-});
-
-// Define routes
-router.get('/', async (ctx) => {
-  ctx.body = { message: 'Hello from Koa on Node Functions!' };
 });
 
 // Use router middleware
